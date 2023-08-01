@@ -2,15 +2,6 @@
     "name": "holocure-save-editor",
     "version": "1.0.0",
     "description": "Save editor for the fan game HoloCure",
-    "main": "dist/index.js",
-    "scripts": {
-        "build": "npx tsc",
-        "test": "mocha --require ts-node/register specs/**/*spec.ts"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/araguma/holocure-save-editor.git"
-    },
     "keywords": [
         "holocure",
         "save",
@@ -18,10 +9,15 @@
     ],
     "author": "araguma",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/araguma/holocure-save-editor/issues"
+    "main": "dist/index.js",
+    "files": [
+        "dist/",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "npx tsc",
+        "test": "mocha --require ts-node/register specs/**/*spec.ts"
     },
-    "homepage": "https://github.com/araguma/holocure-save-editor#readme",
     "devDependencies": {
         "@types/mocha": "^10.0.1",
         "@types/node": "^20.4.5",
@@ -29,8 +25,12 @@
         "ts-node": "^10.9.1",
         "typescript": "^5.1.6"
     },
-    "files": [
-        "dist/",
-        "README.md"
-    ]
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/araguma/holocure-save-editor.git"
+    },
+    "bugs": {
+        "url": "https://github.com/araguma/holocure-save-editor/issues"
+    },
+    "homepage": "https://github.com/araguma/holocure-save-editor#readme"
 }
