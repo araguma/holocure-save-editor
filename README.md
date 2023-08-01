@@ -36,7 +36,8 @@ edit.data.mobUp = 10;
 edit.data.ATK = 1;
 
 // Save the edited save file
-// Note: It is recommended that you either run console.log(edit.data) to verify the changes, or save the edited save file to a different file
+// Note: It is recommended that you either run console.log(edit.data) to verify the changes
+//       or save the edited save file to a different file
 edit.save('path/to/output/save_n.dat'); // You can use edit.save() to overwrite the original save file
 ```
 
