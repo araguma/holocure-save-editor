@@ -49,27 +49,198 @@ edit.save('path/to/output/save_n.dat'); // Or omit path to overwrite
 
 ## Documentation
 
-### coin(amount)
+The `HoloEdit` class provides methods for modifying a HoloCure save file.
 
-### achievement(achievementId, unlocked)
+### Constructor
 
-### tear(generationId, amount)
+```typescript
+constructor(savePath: string)
+```
 
-### gRank(characterId, rank)
+Creates a new `HoloEdit` instance with the specified save file path.
 
-### outfit(outfitId, unlocked)
+#### Parameters
 
-### stage(stageId, unlocked)
+- `savePath`: The path to the HoloCure save file.
 
-### item(itemId, unlocked)
+### Method: achievement
 
-### weapon(weaponId, unlocked)
+```typescript
+achievement(achievement: save.Achievement | 'all', unlocked: boolean | 0 | 1): this
+```
 
-### collab(collabId, unlocked)
+Sets the unlocked status of an achievement or all achievements.
 
-### save([savePath])
+#### Parameters
+
+- `achievement`: The achievement to modify, or `'all'` to modify all achievements.
+- `unlocked`: The new unlocked status of the achievement(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: coin
+
+```typescript
+coin(amount: number): this
+```
+
+Sets the number of HoloCoins.
+
+#### Parameters
+
+- `amount`: The new number of HoloCoins.
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: tear
+
+```typescript
+tear(generation: save.Generation | 'all', amount: number): this
+```
+
+Sets the number of tears for a generation or all generations.
+
+#### Parameters
+
+- `generation`: The generation to modify, or `'all'` to modify all generations.
+- `amount`: The new number of tears.
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: gRank
+
+```typescript
+gRank(character: save.Character | 'all', rank: number): this
+```
+
+Sets the rank of a character or all characters.
+
+#### Parameters
+
+- `character`: The character to modify, or `'all'` to modify all characters.
+- `rank`: The new rank of the character(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: outfit
+
+```typescript
+outfit(outfit: save.Outfit | 'all', unlocked: boolean): this
+```
+
+Sets the unlocked status of an outfit or all outfits.
+
+#### Parameters
+
+- `outfit`: The outfit to modify, or `'all'` to modify all outfits.
+- `unlocked`: The new unlocked status of the outfit(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: stage
+
+```typescript
+stage(stage: save.Stage | 'all', unlocked: boolean): this
+```
+
+Sets the unlocked status of a stage or all stages.
+
+#### Parameters
+
+- `stage`: The stage to modify, or `'all'` to modify all stages.
+- `unlocked`: The new unlocked status of the stage(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: item
+
+```typescript
+item(item: save.Item | 'all', unlocked: boolean): this
+```
+
+Sets the unlocked status of an item or all items.
+
+#### Parameters
+
+- `item`: The item to modify, or `'all'` to modify all items.
+- `unlocked`: The new unlocked status of the item(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: weapon
+
+```typescript
+weapon(weapon: save.Weapon | 'all', unlocked: boolean): this
+```
+
+Sets the unlocked status of a weapon or all weapons.
+
+#### Parameters
+
+- `weapon`: The weapon to modify, or `'all'` to modify all weapons.
+- `unlocked`: The new unlocked status of the weapon(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: collab
+
+```typescript
+collab(collab: save.Collab | 'all', unlocked: boolean): this
+```
+
+Sets the seen status of a collab or all collabs.
+
+#### Parameters
+
+- `collab`: The collab to modify, or `'all'` to modify all collabs.
+- `unlocked`: The new seen status of the collab(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: save
+
+```typescript
+save(savePath?: string): this
+```
+
+Saves the modified data to a file.
+
+#### Parameters
+
+- `savePath`: The path to save the file. If not specified, the original save file will be overwritten.
+
+#### Returns
+
+The `HoloEdit` instance.
 
 ## Roadmap
 
 - Support for the upcoming 0.6 version
 - More commonly used edit methods
+
+## Contribute
+
+```bash
+git clone https://github.com/araguma/holocure-save-editor.git
+cd holocure-save-editor/
+npm i
+npm run build
+```
