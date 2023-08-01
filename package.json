@@ -1,7 +1,7 @@
 {
     "name": "holocure-save-editor",
     "version": "1.0.0",
-    "description": "",
+    "description": "Save editor for the fan game HoloCure",
     "main": "dist/index.js",
     "scripts": {
         "build": "npx tsc",
