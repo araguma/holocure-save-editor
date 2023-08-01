@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "npx tsc",
-        "test": "mocha --require ts-node/register test/**/*spec.ts"
+        "test": "mocha --require ts-node/register specs/**/*spec.ts"
     },
     "repository": {
         "type": "git",
