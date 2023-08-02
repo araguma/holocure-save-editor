@@ -104,6 +104,14 @@ describe('HoloEdit', () => {
             assert.equal(edit.data.seenCollabs.includes('BrokenDreams'), false);
         });
     });
+    describe('#clear()', () => {
+        it('sets the clear amount for the specified character', () => {
+            const edit = new HoloEdit(randomSave());
+            const clears = Math.floor(Math.random() * 1000);
+            edit.clear('fauna', clears);
+            assert.equal(edit.data.characterClears.find(c => c[0] === 'fauna')?.[1], clears);
+        });
+    });
     describe('#save()', () => {
         it('overwrites the original save file if no output path is provided', () => {
             const randomSavePath = randomSave();

@@ -68,6 +68,17 @@ class HoloEdit {
         modifyUnlockable(this.data, 'seenCollabs', save.collabs, collab, unlocked);
         return this;
     }
+    clear(character: save.Character | 'all', clears: number) {
+        if(character === 'all')
+            this.data.characterClears = save.characters.map(c => [c, clears]);
+        else {
+            const characterClear = this.data.characterClears.find(c => c[0] === character);
+            if(characterClear)
+                characterClear[1] = clears;
+            else
+                this.data.characterClears.push([character, clears]);
+        }
+    }
     save(savePath?: string) {
         const data = Buffer.from(JSON.stringify(this.data));
         fs.writeFileSync(savePath ?? this.savePath, data.toString('base64'));

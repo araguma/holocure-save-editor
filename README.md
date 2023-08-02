@@ -43,7 +43,7 @@ edit.data.ATK = 1;
 
 // Save the edited save file
 // Note: It is recommended that you run console.log(edit.data) to verify the
-//       changes before saving or save the edited save file to another location
+//       changes before saving or save the edited data to another location
 edit.save('path/to/output/save_n.dat'); // Or omit path to overwrite
 ```
 
@@ -210,6 +210,23 @@ Sets the seen status of a collab or all collabs.
 
 - `collab`: The collab to modify, or `'all'` to modify all collabs.
 - `unlocked`: The new seen status of the collab(s).
+
+#### Returns
+
+The `HoloEdit` instance.
+
+### Method: clear
+
+```typescript
+clear(character: save.Character | 'all', clears: number): this
+```
+
+Sets the number of clears for a character or all characters.
+
+#### Parameters
+
+- `character`: The character to modify, or `'all'` to modify all characters.
+- `clears`: The new number of clears.
 
 #### Returns
 
