@@ -1,6 +1,6 @@
-import path from 'node:path';
-import assert from 'node:assert';
-import HoloEdit from '../src/index';
+import * as path from 'node:path';
+import * as assert from 'node:assert';
+import HoloEdit from '../../../src/versions/0.5/holoedit';
 
 const saveLocation = path.join(__dirname, 'saves/');
 const saves = Array(1).fill(null).map((_, i) => `${saveLocation}save-${i + 1}.dat`);

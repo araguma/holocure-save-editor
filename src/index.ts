@@ -1,4 +1,7 @@
-import HoloEdit from './editor';
-export default HoloEdit;
+import HoloEdit_0_5 from './versions/0.5/holoedit';
 
-export * from "./save";
+class HoloEdit {
+    static v0_5 = HoloEdit_0_5;
+}
+
+export default HoloEdit;

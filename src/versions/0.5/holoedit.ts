@@ -1,16 +1,17 @@
-import fs from 'node:fs';
+import * as fs from 'node:fs';
 import { Buffer } from 'node:buffer';
 import * as save from './save';
 
 class HoloEdit {
     data: save.HoloData;
     constructor(
-        private savePath: string
+        private savePath: string,
     ) {
         const file = fs.readFileSync(this.savePath, 'utf-8');
         const data = Buffer.from(file, 'base64');
         this.data = JSON.parse(data.toString());
     }
+    static ID = save;
     achievement(achievement: save.Achievement | 'all', unlocked: boolean | 0 | 1) {
         const setUnlockedFn = (a: save.Achievement, u: boolean | 0 | 1) => {
             this.data.achievements[a] = {
@@ -18,10 +19,11 @@ class HoloEdit {
                 flags: this.data.achievements[a]?.flags ?? {},
             }
         }
-        if(achievement === 'all')
-            for(let i = 0; i < save.achievements.length; i ++)
-                setUnlockedFn(save.achievements[i], unlocked);
-        else
+        if(achievement === 'all') {
+            const achievements = Object.values(save.ACHIEVEMENT);
+            for(let i = 0; i < achievements.length; i ++)
+                setUnlockedFn(achievements[i], unlocked);
+        } else
             setUnlockedFn(achievement, unlocked);
         return this;
     }
@@ -49,28 +51,28 @@ class HoloEdit {
         return this;
     }
     outfit(outfit: save.Outfit | 'all', unlocked: boolean) {
-        modifyUnlockable(this.data, 'unlockedOutfits', save.outfits, outfit, unlocked);
+        modifyUnlockable(this.data, 'unlockedOutfits', Object.values(save.OUTFIT), outfit, unlocked);
         return this;
     }
     stage(stage: save.Stage | 'all', unlocked: boolean) {
-        modifyUnlockable(this.data, 'unlockedStages', save.stages, stage, unlocked);
+        modifyUnlockable(this.data, 'unlockedStages', Object.values(save.STAGE), stage, unlocked);
         return this;
     }
     item(item: save.Item | 'all', unlocked: boolean) {
-        modifyUnlockable(this.data, 'unlockedItems', save.items, item, unlocked);
+        modifyUnlockable(this.data, 'unlockedItems', Object.values(save.ITEM), item, unlocked);
         return this;
     }
     weapon(weapon: save.Weapon | 'all', unlocked: boolean) {
-        modifyUnlockable(this.data, 'unlockedWeapons', save.weapons, weapon, unlocked);
+        modifyUnlockable(this.data, 'unlockedWeapons', Object.values(save.WEAPON), weapon, unlocked);
         return this;
     }
     collab(collab: save.Collab | 'all', unlocked: boolean) {
-        modifyUnlockable(this.data, 'seenCollabs', save.collabs, collab, unlocked);
+        modifyUnlockable(this.data, 'seenCollabs', Object.values(save.COLLAB), collab, unlocked);
         return this;
     }
     clear(character: save.Character | 'all', clears: number) {
         if(character === 'all')
-            this.data.characterClears = save.characters.map(c => [c, clears]);
+            this.data.characterClears = Object.values(save.CHARACTER).map(c => [c, clears]);
         else {
             const characterClear = this.data.characterClears.find(c => c[0] === character);
             if(characterClear)
