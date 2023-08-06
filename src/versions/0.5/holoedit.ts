@@ -12,19 +12,17 @@ class HoloEdit {
         this.data = JSON.parse(data.toString());
     }
     static ID = save;
-    achievement(achievement: save.Achievement | 'all', unlocked: boolean | 0 | 1) {
-        const setUnlockedFn = (a: save.Achievement, u: boolean | 0 | 1) => {
-            this.data.achievements[a] = {
-                unlocked: u,
-                flags: this.data.achievements[a]?.flags ?? {},
+    achievement(achievement: save.Achievement | 'all', unlocked: 0 | 1, flags?: Record<string, any>) {
+        const modifyAchievement = (id: save.Achievement) => {
+            this.data.achievements[id] = {
+                unlocked,
+                flags: flags ?? this.data.achievements[id]?.flags ?? {},
             }
         }
-        if(achievement === 'all') {
-            const achievements = Object.values(save.ACHIEVEMENT);
-            for(let i = 0; i < achievements.length; i ++)
-                setUnlockedFn(achievements[i], unlocked);
-        } else
-            setUnlockedFn(achievement, unlocked);
+        if(achievement === 'all')
+            Object.values(save.ACHIEVEMENT).forEach(modifyAchievement);
+        else
+            modifyAchievement(achievement);
         return this;
     }
     coin(amount: number) {
@@ -32,22 +30,11 @@ class HoloEdit {
         return this;
     }
     tear(generation: save.Generation | 'all', amount: number) {
-        for(let i = 0; i < this.data.tears.length; i ++) {
-            if(generation === 'all')
-                this.data.tears[i][1] = amount;
-            else if(this.data.tears[i][0] === generation)
-                this.data.tears[i][1] = amount;
-        }
+        modifyCounter(this.data, 'tears', Object.values(save.GENERATION), generation, amount);
         return this;
     }
     gRank(character: save.Character | 'all', rank: number) {
-        for(let i = 0; i < this.data.characters.length; i ++)
-            if(/random|none|empty/.test(this.data.characters[i][0]))
-                continue;
-            else if(character === 'all')
-                this.data.characters[i][1] = rank;
-            else if(this.data.characters[i][0] === character)
-                this.data.characters[i][1] = rank;
+        modifyCounter(this.data, 'characters', Object.values(save.CHARACTER), character, rank);
         return this;
     }
     outfit(outfit: save.Outfit | 'all', unlocked: boolean) {
@@ -71,15 +58,8 @@ class HoloEdit {
         return this;
     }
     clear(character: save.Character | 'all', clears: number) {
-        if(character === 'all')
-            this.data.characterClears = Object.values(save.CHARACTER).map(c => [c, clears]);
-        else {
-            const characterClear = this.data.characterClears.find(c => c[0] === character);
-            if(characterClear)
-                characterClear[1] = clears;
-            else
-                this.data.characterClears.push([character, clears]);
-        }
+        modifyCounter(this.data, 'characterClears', Object.values(save.CHARACTER), character, clears);
+        return this;
     }
     save(savePath?: string) {
         const data = Buffer.from(JSON.stringify(this.data));
@@ -106,6 +86,27 @@ function modifyUnlockable<
         data[property].push(item);
     else if(!unlocked)
         data[property] = data[property].filter(i => i !== item) as O[K];
+}
+
+function modifyCounter<
+    O extends Record<K, [string, number][]>,
+    K extends KeysMatching<O, [string, number][]>
+>(
+    data: O,
+    property: K,
+    allCounters: readonly O[K][number][0][],
+    counter: O[K][number][0] | 'all',
+    amount: number,
+) {
+    if(counter === 'all')
+        data[property] = allCounters.map(c => [c, amount]) as O[K];
+    else {
+        const counterAmount = data[property].find(c => c[0] === counter);
+        if(counterAmount)
+            counterAmount[1] = amount;
+        else
+            data[property].push([counter, amount]);
+    }
 }
 
 export default HoloEdit;
