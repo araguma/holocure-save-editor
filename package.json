@@ -1,6 +1,6 @@
 {
     "name": "holocure-save-editor",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Declarative save editor for HoloCure",
     "keywords": [
         "holocure",
