@@ -21,7 +21,7 @@ npm i holocure-save-editor
 ```typescript
 import HoloEdit from 'holocure-save-editor';
 
-const edit = new HoloEdit.v0_5('/mnt/c/Users/araguma/AppData/Local/Holocure/save_n.dat');
+const edit = new HoloEdit.v0_5('path/to/output/save_n.dat');
 
 // Using method chaining to edit the save file
 edit
