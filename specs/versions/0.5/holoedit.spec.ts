@@ -79,9 +79,15 @@ describe('HoloEdit.v0_5', () => {
                 editor.tear(save.GENERATION.GEN_0, 1);
                 assert.equal(editor.data.tears[0][1], 1);
                 assert.equal(editor.data.tears[1][1], 0);
+                assert.equal(editor.data.tears.length, 2);
                 editor.tear(save.GENERATION.GEN_1, 2);
                 assert.equal(editor.data.tears[0][1], 1);
                 assert.equal(editor.data.tears[1][1], 2);
+                assert.equal(editor.data.tears.length, 2);
+                editor.tear(save.GENERATION.GEN_2, 3);
+                assert.equal(editor.data.tears[0][1], 1);
+                assert.equal(editor.data.tears[1][1], 2);
+                assert.equal(editor.data.tears[2][1], 3);
             });
         });
         it('should modify the values of all generations if the given generation is \'all\'', () => {
