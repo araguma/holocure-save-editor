@@ -248,11 +248,6 @@ Saves the modified data to a file.
 
 The `HoloEdit` instance.
 
-## Roadmap
-
-- Support for the upcoming 0.6 version
-- More commonly used edit methods
-
 ## Contribute
 
 ```bash
@@ -261,3 +256,8 @@ cd holocure-save-editor/
 npm i
 npm run build
 ```
+
+## Roadmap
+
+- Support for the upcoming 0.6 version
+- More commonly used edit methods
