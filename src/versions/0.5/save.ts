@@ -1,8 +1,8 @@
 export type HoloData = {
-    achievements: Record<Achievement, {
-        unlocked: boolean | 0 | 1;
+    achievements: Partial<Record<Achievement, {
+        unlocked: 0 | 1;
         flags: Record<string, any>;
-    }>;
+    }>>;
     food: number;
     growth: number;
     specUnlock: number;
