@@ -5,7 +5,7 @@ import HoloEdit from '../../../src/versions/0.5/holoedit';
 import * as save from '../../../src/versions/0.5/save';
 
 const saveDirectory = path.join(__dirname, 'saves');
-const saveFilenames = ['complete.dat', 'fresh.dat'];
+const saveFilenames = ['partial.dat', 'fresh.dat'];
 const editors = saveFilenames.map((filename) => {
     return new HoloEdit(path.join(saveDirectory, filename));
 });
